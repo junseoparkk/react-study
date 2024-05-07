@@ -23,3 +23,5 @@ const Create = (props) => {
     </article>
   );
 };
+
+export default Create;
