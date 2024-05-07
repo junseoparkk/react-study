@@ -1,63 +1,9 @@
 import './App.css';
 import {useState} from 'react';
-
-const Header = (props) => {
-  return (
-    <header>
-      <h1 ><a href="/" onClick={(event) => {
-        event.preventDefault();
-        props.onChangeMode();
-      }}>{props.title}</a></h1>
-    </header>
-  )
-}
-
-const Nav = (props) => {
-  const list = []
-  for (let i = 0; i < props.topics.length; i++) {
-    let topic = props.topics[i];
-    list.push(<li key={topic.id}>
-      <a id={topic.id} href={`/read/${topic.id}`} onClick={event => {
-        event.preventDefault();
-        props.onChangeMode(Number(event.target.id));
-    }}>{topic.title}</a></li>);
-  }
-
-  return (
-    <nav>
-      <ol>
-        {list}
-      </ol>
-    </nav>
-  )
-}
-
-const Article = ({ title, body }) => {
-  return (
-    <article>
-      <h2>{title}</h2>
-      {body}
-    </article>
-  )
-}
-
-const Create = (props) => {
-  return (
-    <article>
-      <h2>Create</h2>
-      <form onSubmit={event => {
-        event.preventDefault();
-        const title = event.target.title.value;
-        const body = event.target.body.value;
-        props.onCreate(title, body);
-      }}>
-        <p><input type='text' name='title' placeholder='title'></input></p>
-        <p><textarea name='body' placeholder='body'></textarea></p>
-        <p><input type='submit' value='Create'></input></p>
-      </form>
-    </article>
-  )
-}
+import Header from './components/Header';
+import Nav from './components/Nav';
+import Article from './components/Article';
+import Create from './components/Create';
 
 const App = () => {
   const [mode, setMode] = useState('WELCOME');
